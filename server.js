@@ -4,13 +4,13 @@ const app = express()
 
 
 
-// Greet Route 
+// 1. Be polite Greet the user 
 app.get('/greetings/:username', (req, res) => {
     const username = req.params.username
     res.send(`<h1>what a delight to see you once more, ${username}</h1>`)
 })
 
-// rolling the dice
+// 2. Rolling the dice
 app.get('/roll/:number', (req, res) => {
     const validateNumber = validator.isNumeric(req.params.number)
     const number = req.params.number
@@ -23,6 +23,8 @@ app.get('/roll/:number', (req, res) => {
         console.log(randomNumber)
     }
 })
+
+// 3. I want THAT One! Route
 
 app.listen(3000, () => {
     console.log('listening on port 3000🎧')
