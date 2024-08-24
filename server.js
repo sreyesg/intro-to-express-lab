@@ -26,6 +26,24 @@ app.get('/roll/:number', (req, res) => {
 
 // 3. I want THAT One! Route
 
+app.get('/collectibles/:index', (req, res)=> {
+    const collectibles = [
+        {name: 'shiny ball', price: 5.95},
+        {name: 'autographed picture of a dog', price: 10},
+        {name: 'vintage 1970s yogurt SOLD AS-IS', price: 0.99},
+    ]
+        const index = req.params.index
+        console.log(index)
+        if (collectibles[index] === undefined) {
+            res.send('<h1>This item is not yet in stock. Check back soon!</h1>')    
+        }else {
+            itemName = collectibles[index].name
+            itemPrice = collectibles[index].price
+            response = 
+            res.send(`<h1>so, you want the ${itemName}? for ${itemPrice}, it can be yours</h1>`)
+        }
+})
+
 app.listen(3000, () => {
     console.log('listening on port 3000🎧')
 })
