@@ -26,12 +26,13 @@ app.get('/roll/:number', (req, res) => {
 
 // 3. I want THAT One! Route
 
+const collectibles = [
+    {name: 'shiny ball', price: 5.95},
+    {name: 'autographed picture of a dog', price: 10},
+    {name: 'vintage 1970s yogurt SOLD AS-IS', price: 0.99},
+]
 app.get('/collectibles/:index', (req, res)=> {
-    const collectibles = [
-        {name: 'shiny ball', price: 5.95},
-        {name: 'autographed picture of a dog', price: 10},
-        {name: 'vintage 1970s yogurt SOLD AS-IS', price: 0.99},
-    ]
+   
         const index = req.params.index
         console.log(index)
         if (collectibles[index] === undefined) {
@@ -44,6 +45,38 @@ app.get('/collectibles/:index', (req, res)=> {
         }
 })
 
+// Using query parameters
+const shoes = [
+    { name: "Birkenstocks", price: 50, type: "sandal" },
+    { name: "Air Jordans", price: 500, type: "sneaker" },
+    { name: "Air Mahomeses", price: 501, type: "sneaker" },
+    { name: "Utility Boots", price: 20, type: "boot" },
+    { name: "Velcro Sandals", price: 15, type: "sandal" },
+    { name: "Jet Boots", price: 1000, type: "boot" },
+    { name: "Fifty-Inch Heels", price: 175, type: "heel" }
+];
+
+app.get('/shoes', (req, res) => {
+    const minPrice = req.query.minPrice
+    const maxPrice = req.query.maxPrice
+    const qType = req.query.type
+    console.log('this is the type', qType)
+    
+    const filteredShoes = shoes.filter((shoe) => {
+        console.log(shoe.type)
+        return shoe.price >= minPrice && shoe.price <= maxPrice && shoe.type === qType    
+            
+        }
+    )
+    res.send(filteredShoes)
+})
+
+
+
+
+
+
+// add listener
 app.listen(3000, () => {
     console.log('listening on port 3000🎧')
 })
