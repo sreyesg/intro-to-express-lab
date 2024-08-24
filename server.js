@@ -57,23 +57,24 @@ const shoes = [
 ];
 
 app.get('/shoes', (req, res) => {
+    
+    if (Object.keys(req.query).length === 0) {
+        res.send(shoes)
+    
+    } else {
     const minPrice = req.query.minPrice
     const maxPrice = req.query.maxPrice
     const qType = req.query.type
-    console.log('this is the type', qType)
+   
     
     const filteredShoes = shoes.filter((shoe) => {
-        console.log(shoe.type)
+        
         return shoe.price >= minPrice && shoe.price <= maxPrice && shoe.type === qType    
-            
         }
     )
     res.send(filteredShoes)
+    }
 })
-
-
-
-
 
 
 // add listener
