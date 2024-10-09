@@ -69,7 +69,7 @@ app.get('/shoes', (req, res) => {
     
     const filteredShoes = shoes.filter((shoe) => {
         
-        return shoe.price >= minPrice && shoe.price <= maxPrice && shoe.type === qType    
+        return shoe.price >= minPrice || shoe.price <= maxPrice || shoe.type === qType    
         }
     )
     res.send(filteredShoes)
